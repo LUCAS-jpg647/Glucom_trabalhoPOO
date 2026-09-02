@@ -3,6 +3,7 @@ package TrabPOO;
 public class Marca {
    private static int proximoCodigo = 1;
    private int codigo;
+   private int sla;
    private String nomeFantasia;
    private String fabricante;
    private String cnpj;
