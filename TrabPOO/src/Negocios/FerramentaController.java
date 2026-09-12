@@ -54,4 +54,13 @@ public class FerramentaController {
     public boolean removerFerramenta(int codigo) {
         return this.repository.remover(codigo);
     }
+
+    public boolean alterarStatus(int codigo, boolean status) {
+        Ferramenta f = this.repository.buscarPorCodigo(codigo);
+        if (f == null) {
+            return false;
+        }
+        f.setStatus(status);
+        return true;
+    }
 }
