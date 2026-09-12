@@ -1,10 +1,10 @@
-package TrabPOO.Negocios;
+package Negocios;
 
 import java.util.ArrayList;
 
-import TrabPOO.Dados.Ferramenta;
-import TrabPOO.Dados.FerramentaRepository;
-import TrabPOO.Dados.Marca;
+import Entidade.Ferramenta;
+import Dados.FerramentaRepository;
+import Entidade.Marca;
 
 public class FerramentaController {
     private FerramentaRepository repository;

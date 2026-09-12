@@ -1,4 +1,4 @@
-package TrabPOO.Dados;
+package Entidade;
 
 public class Marca {
     private int codigo;

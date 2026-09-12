@@ -1,4 +1,4 @@
-package TrabPOO.Dados;
+package Entidade;
 
 public class Ferramenta {
     private int codigo;

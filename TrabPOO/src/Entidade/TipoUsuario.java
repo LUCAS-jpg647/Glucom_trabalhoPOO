@@ -1,7 +1,6 @@
-package TrabPOO.Dados;
+package Entidade;
 
 public enum TipoUsuario {
     TECNICO,
-    SUPERVISOR,
     CLIENTE;
 }

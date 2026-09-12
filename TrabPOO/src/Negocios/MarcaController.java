@@ -1,9 +1,9 @@
-package TrabPOO.Negocios;
+package Negocios;
 
 import java.util.ArrayList;
 
-import TrabPOO.Dados.Marca;
-import TrabPOO.Dados.MarcaRepository;
+import Entidade.Marca;
+import Dados.MarcaRepository;
 
 public class MarcaController {
     private MarcaRepository repository;

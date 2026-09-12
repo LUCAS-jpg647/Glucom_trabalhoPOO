@@ -1,19 +1,19 @@
-  package TrabPOO.UI;
+package UI;
 
 import java.util.Scanner;
 
-import TrabPOO.Dados.Ferramenta;
-import TrabPOO.Dados.Marca;
-import TrabPOO.Dados.TipoUsuario;
-import TrabPOO.Dados.Usuario;
-import TrabPOO.Negocios.FerramentaController;
-import TrabPOO.Negocios.MarcaController;
-import TrabPOO.Negocios.UsuarioController;
+import Entidade.Ferramenta;
+import Entidade.Marca;
+import Entidade.TipoUsuario;
+import Entidade.Usuario;
+import Negocios.FerramentaController;
+import Negocios.MarcaController;
+import Negocios.UsuarioController;
 
 public class Main {
 
     static Scanner scn = new Scanner(System.in);
-    static MarcaController marcaColontroller = new MarcaController();
+    static MarcaController marcaController = new MarcaController();
     static FerramentaController ferramentaController = new FerramentaController();
     static UsuarioController usuarioController = new UsuarioController();
 

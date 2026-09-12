@@ -1,4 +1,4 @@
-package TrabPOO.Dados;
+package Entidade;
 
 public class Usuario {
     private int id;

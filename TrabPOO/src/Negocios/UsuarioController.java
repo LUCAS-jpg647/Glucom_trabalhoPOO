@@ -1,10 +1,10 @@
-package TrabPOO.Negocios;
+package Negocios;
 
 import java.util.ArrayList;
 
-import TrabPOO.Dados.TipoUsuario;
-import TrabPOO.Dados.Usuario;
-import TrabPOO.Dados.UsuarioRepository;
+import Entidade.TipoUsuario;
+import Entidade.Usuario;
+import Dados.UsuarioRepository;
 
 public class UsuarioController {
     private UsuarioRepository repository;

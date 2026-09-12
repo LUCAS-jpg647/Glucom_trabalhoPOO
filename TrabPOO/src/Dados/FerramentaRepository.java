@@ -1,4 +1,6 @@
-package TrabPOO.Dados;
+package Dados;
+
+import Entidade.*;
 
 import java.util.ArrayList;
 
