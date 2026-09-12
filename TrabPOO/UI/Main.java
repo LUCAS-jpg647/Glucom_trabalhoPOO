@@ -13,7 +13,7 @@ import TrabPOO.Negocios.UsuarioController;
 public class Main {
 
     static Scanner scn = new Scanner(System.in);
-    static MarcaController marcaController = new MarcaController();
+    static MarcaController marcaColontroller = new MarcaController();
     static FerramentaController ferramentaController = new FerramentaController();
     static UsuarioController usuarioController = new UsuarioController();
 
