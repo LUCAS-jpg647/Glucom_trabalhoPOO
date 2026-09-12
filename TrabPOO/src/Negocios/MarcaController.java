@@ -33,6 +33,26 @@ public class MarcaController {
         return this.repository.buscarPorCodigo(codigo);
     }
 
+    public boolean atualizarMarca(int codigo, String nomeFantasia, String fabricante, String cnpj) {
+        Marca m = this.repository.buscarPorCodigo(codigo);
+        if (m == null) {
+            return false;
+        }
+        if (nomeFantasia == null || nomeFantasia.isEmpty()) {
+            return false;
+        }
+        if (fabricante == null || fabricante.isEmpty()) {
+            return false;
+        }
+        if (cnpj == null || cnpj.isEmpty()) {
+            return false;
+        }
+        m.setNomeFantasia(nomeFantasia);
+        m.setFabricante(fabricante);
+        m.setCnpj(cnpj);
+        return true;
+    }
+
     public boolean removerMarca(int codigo) {
         return this.repository.remover(codigo);
     }

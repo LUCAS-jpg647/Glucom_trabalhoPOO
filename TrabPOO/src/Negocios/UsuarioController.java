@@ -60,4 +60,14 @@ public class UsuarioController {
     public boolean removerUsuario(int id) {
         return this.repository.remover(id);
     }
+
+    public Usuario autenticar(String nomeUsuario, String senha) {
+        if (nomeUsuario == null || nomeUsuario.isEmpty()) {
+            return null;
+        }
+        if (senha == null || senha.isEmpty()) {
+            return null;
+        }
+        return this.repository.buscarPorLoginSenha(nomeUsuario, senha);
+    }
 }

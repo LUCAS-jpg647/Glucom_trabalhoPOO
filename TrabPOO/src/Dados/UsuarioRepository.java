@@ -42,4 +42,14 @@ public class UsuarioRepository {
         }
         return false;
     }
+
+    public Usuario buscarPorLoginSenha(String nomeUsuario, String senha) {
+        for (int i = 0; i < this.usuarios.size(); i++) {
+            Usuario u = this.usuarios.get(i);
+            if (u.getNomeUsuario().equals(nomeUsuario) && u.getSenha().equals(senha)) {
+                return u;
+            }
+        }
+        return null;
+    }
 }
