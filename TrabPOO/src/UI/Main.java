@@ -1,5 +1,6 @@
 package UI;
-
+//Login do Tecnico:Cleitom senha:123;
+//Login do CLiente:Maria senha:123;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,8 +38,8 @@ public class Main {
     }
 
     public static void inicializarUsuarios() {
-        usuarioController.cadastrarUsuario("Tecnico Padrao", "tecnico", "123", TipoUsuario.TECNICO);
-        usuarioController.cadastrarUsuario("Cliente Padrao", "cliente", "123", TipoUsuario.CLIENTE);
+        usuarioController.cadastrarUsuario("Cleitão dos Elevador", "Cleitom", "123", TipoUsuario.TECNICO);
+        usuarioController.cadastrarUsuario("Maria", "Maria", "123", TipoUsuario.CLIENTE);
     }
 
     public static Usuario telaLogin() {
