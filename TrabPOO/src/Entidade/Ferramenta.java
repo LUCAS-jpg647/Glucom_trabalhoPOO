@@ -2,12 +2,12 @@ package Entidade;
 
 public class Ferramenta {
     private int codigo;
-    private Marca marca;
+    private String marca;
     private boolean status;
     private String nome;
     private String caracteristicas;
 
-    public Ferramenta(int codigo, Marca marca, String nome, String caracteristicas) {
+    public Ferramenta(int codigo, String marca, String nome, String caracteristicas) {
         this.codigo = codigo;
         this.marca = marca;
         this.nome = nome;
@@ -43,11 +43,11 @@ public class Ferramenta {
         this.status = status;
     }
 
-    public Marca getMarca() {
+    public String getMarca() {
         return this.marca;
     }
 
-    public void setMarca(Marca marca) {
+    public void setMarca(String marca) {
         this.marca = marca;
     }
 
@@ -60,7 +60,7 @@ public class Ferramenta {
         }
         return "Codigo: " + this.codigo
                 + " | Nome: " + this.nome
-                + " | Marca: " + this.marca.getNomeFantasia()
+                + " | Marca: " + this.marca
                 + " | Caracteristicas: " + this.caracteristicas
                 + " | Status: " + situacao;
     }

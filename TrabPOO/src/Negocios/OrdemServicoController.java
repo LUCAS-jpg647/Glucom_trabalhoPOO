@@ -67,7 +67,22 @@ public class OrdemServicoController {
         return true;
     }
 
-    public boolean concluirOrdem(int codigo, Usuario tecnico, ArrayList<Ferramenta> ferramentasUtilizadas) {
+    public boolean registrarFerramentasUtilizadas(int codigo, Usuario tecnico, ArrayList<Ferramenta> ferramentasUtilizadas) {
+        if (tecnico == null) {
+            return false;
+        }
+        OrdemServico o = this.repository.buscarPorCodigo(codigo);
+        if (o == null) {
+            return false;
+        }
+        if (o.getTecnico() == null || o.getTecnico().getId() != tecnico.getId()) {
+            return false;
+        }
+        o.setFerramentasUtilizadas(ferramentasUtilizadas);
+        return true;
+    }
+
+    public boolean concluirOrdem(int codigo, Usuario tecnico) {
         if (tecnico == null) {
             return false;
         }
@@ -81,7 +96,6 @@ public class OrdemServicoController {
         if (o.getTecnico() == null || o.getTecnico().getId() != tecnico.getId()) {
             return false;
         }
-        o.setFerramentasUtilizadas(ferramentasUtilizadas);
         o.setStatus(StatusOrdem.CONCLUIDA);
         return true;
     }

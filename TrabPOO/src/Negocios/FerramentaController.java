@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import Entidade.Ferramenta;
 import Dados.FerramentaRepository;
-import Entidade.Marca;
 
 public class FerramentaController {
     private FerramentaRepository repository;
@@ -13,8 +12,8 @@ public class FerramentaController {
         this.repository = new FerramentaRepository();
     }
 
-    public Ferramenta cadastrarFerramenta(Marca marca, String nome, String caracteristicas) {
-        if (marca == null) {
+    public Ferramenta cadastrarFerramenta(String marca, String nome, String caracteristicas) {
+        if (marca == null || marca.isEmpty()) {
             return null;
         }
         if (nome == null || nome.isEmpty()) {

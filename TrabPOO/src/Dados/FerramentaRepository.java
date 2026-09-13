@@ -13,7 +13,7 @@ public class FerramentaRepository {
         this.proximoCodigo = 1;
     }
 
-    public Ferramenta salvar(Marca marca, String nome, String caracteristicas) {
+    public Ferramenta salvar(String marca, String nome, String caracteristicas) {
         Ferramenta f = new Ferramenta(this.proximoCodigo, marca, nome, caracteristicas);
         this.ferramentas.add(f);
         this.proximoCodigo = this.proximoCodigo + 1;

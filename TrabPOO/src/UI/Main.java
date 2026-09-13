@@ -4,20 +4,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Entidade.Ferramenta;
-import Entidade.Marca;
 import Entidade.OrdemServico;
 import Entidade.Prioridade;
 import Entidade.TipoUsuario;
 import Entidade.Usuario;
 import Negocios.FerramentaController;
-import Negocios.MarcaController;
 import Negocios.OrdemServicoController;
 import Negocios.UsuarioController;
 
 public class Main {
 
     static Scanner scn = new Scanner(System.in);
-    static MarcaController marcaController = new MarcaController();
     static FerramentaController ferramentaController = new FerramentaController();
     static UsuarioController usuarioController = new UsuarioController();
     static OrdemServicoController ordemServicoController = new OrdemServicoController();
@@ -74,110 +71,32 @@ public class Main {
         do {
             System.out.println();
             System.out.println("=== Menu Tecnico (" + tecnico.getNome() + ") ===");
-            System.out.println("1  - Cadastrar Marca");
-            System.out.println("2  - Listar Marcas");
-            System.out.println("3  - Atualizar Marca");
-            System.out.println("4  - Remover Marca");
-            System.out.println("5  - Cadastrar Ferramenta");
-            System.out.println("6  - Listar Ferramentas");
-            System.out.println("7  - Atualizar Ferramenta");
-            System.out.println("8  - Remover Ferramenta");
-            System.out.println("9  - Ver Ordens de Servico Disponiveis");
-            System.out.println("10 - Aceitar Ordem de Servico");
-            System.out.println("11 - Ver Minhas Ordens em Andamento");
-            System.out.println("12 - Concluir Ordem de Servico");
-            System.out.println("0  - Logout");
+            System.out.println("1 - Cadastrar Ferramenta");
+            System.out.println("2 - Listar Ferramentas");
+            System.out.println("3 - Atualizar Ferramenta");
+            System.out.println("4 - Remover Ferramenta");
+            System.out.println("5 - Ver Ordens de Servico Disponiveis");
+            System.out.println("6 - Aceitar Ordem de Servico");
+            System.out.println("7 - Ver Minhas Ordens em Andamento");
+            System.out.println("8 - Concluir Ordem de Servico");
+            System.out.println("0 - Logout");
             System.out.print("Escolha uma opcao: ");
 
             opcao = scn.nextInt();
 
             switch (opcao) {
-                case 1 -> cadastrarMarca();
-                case 2 -> listarMarcas();
-                case 3 -> atualizarMarca();
-                case 4 -> removerMarca();
-                case 5 -> cadastrarFerramenta();
-                case 6 -> listarFerramentas();
-                case 7 -> atualizarFerramenta();
-                case 8 -> removerFerramenta();
-                case 9 -> listarOrdensDisponiveis();
-                case 10 -> aceitarOrdem(tecnico);
-                case 11 -> listarOrdensDoTecnico(tecnico);
-                case 12 -> concluirOrdem(tecnico);
+                case 1 -> cadastrarFerramenta();
+                case 2 -> listarFerramentas();
+                case 3 -> atualizarFerramenta();
+                case 4 -> removerFerramenta();
+                case 5 -> listarOrdensDisponiveis();
+                case 6 -> aceitarOrdem(tecnico);
+                case 7 -> listarOrdensDoTecnico(tecnico);
+                case 8 -> concluirOrdem(tecnico);
                 case 0 -> System.out.println("Saindo do menu tecnico...");
                 default -> System.out.println("Opcao invalida!");
             }
         } while (opcao != 0);
-    }
-
-    // ---------- Marca ----------
-
-    public static void cadastrarMarca() {
-        System.out.println("--- Cadastro de Marca ---");
-        System.out.print("Nome fantasia : ");
-        String nomeFantasia = scn.next();
-        System.out.print("Fabricante : ");
-        String fabricante = scn.next();
-        System.out.print("CNPJ: ");
-        String cnpj = scn.next();
-
-        Marca marca = marcaController.cadastrarMarca(nomeFantasia, fabricante, cnpj);
-        if (marca != null) {
-            System.out.println("Marca cadastrada com sucesso! Codigo: " + marca.getCodigo());
-        } else {
-            System.out.println("Erro ao cadastrar marca. Verifique os dados.");
-        }
-    }
-
-    public static void listarMarcas() {
-        System.out.println("--- Lista de Marcas ---");
-        ArrayList<Marca> marcas = marcaController.listarMarcas();
-        if (marcas.isEmpty()) {
-            System.out.println("Nenhuma marca cadastrada.");
-        } else {
-            for (int i = 0; i < marcas.size(); i++) {
-                System.out.println(marcas.get(i).toString());
-            }
-        }
-    }
-
-    public static void atualizarMarca() {
-        System.out.println("--- Atualizar Marca ---");
-        System.out.print("Digite o codigo da marca: ");
-        int codigo = scn.nextInt();
-
-        Marca marca = marcaController.buscarMarcaPorCodigo(codigo);
-        if (marca == null) {
-            System.out.println("Marca nao encontrada!");
-            return;
-        }
-
-        System.out.print("Novo nome fantasia (" + marca.getNomeFantasia() + "): ");
-        String nomeFantasia = scn.next();
-        System.out.print("Novo fabricante (" + marca.getFabricante() + "): ");
-        String fabricante = scn.next();
-        System.out.print("Novo CNPJ (" + marca.getCnpj() + "): ");
-        String cnpj = scn.next();
-
-        boolean ok = marcaController.atualizarMarca(codigo, nomeFantasia, fabricante, cnpj);
-        if (ok) {
-            System.out.println("Marca atualizada com sucesso!");
-        } else {
-            System.out.println("Erro ao atualizar marca.");
-        }
-    }
-
-    public static void removerMarca() {
-        System.out.println("--- Remover Marca ---");
-        System.out.print("Digite o codigo da marca: ");
-        int codigo = scn.nextInt();
-
-        boolean ok = marcaController.removerMarca(codigo);
-        if (ok) {
-            System.out.println("Marca removida com sucesso!");
-        } else {
-            System.out.println("Marca nao encontrada!");
-        }
     }
 
     // ---------- Ferramenta ----------
@@ -185,26 +104,8 @@ public class Main {
     public static void cadastrarFerramenta() {
         System.out.println("--- Cadastro de Ferramenta ---");
 
-        if (marcaController.listarMarcas().isEmpty()) {
-            System.out.println("Nenhuma marca cadastrada. Cadastre uma marca primeiro.");
-            return;
-        }
-
-        System.out.println("Marcas cadastradas:");
-        ArrayList<Marca> marcas = marcaController.listarMarcas();
-        for (int i = 0; i < marcas.size(); i++) {
-            System.out.println(marcas.get(i).getCodigo() + " - " + marcas.get(i).getNomeFantasia());
-        }
-
-        System.out.print("Digite o codigo da marca: ");
-        int codMarca = scn.nextInt();
-
-        Marca marca = marcaController.buscarMarcaPorCodigo(codMarca);
-        if (marca == null) {
-            System.out.println("Marca nao encontrada!");
-            return;
-        }
-
+        System.out.print("Nome da marca (sem espaco): ");
+        String marca = scn.next();
         System.out.print("Nome da ferramenta (sem espaco): ");
         String nome = scn.next();
         System.out.print("Caracteristicas (sem espaco): ");
@@ -294,11 +195,56 @@ public class Main {
         int codigo = scn.nextInt();
 
         boolean ok = ordemServicoController.aceitarOrdem(codigo, tecnico);
-        if (ok) {
-            System.out.println("Ordem aceita com sucesso! Ela agora esta em andamento.");
-        } else {
+        if (!ok) {
             System.out.println("Nao foi possivel aceitar essa ordem. Verifique o codigo e o status dela.");
+            return;
         }
+
+        System.out.println("Ordem aceita com sucesso! Ela agora esta em andamento.");
+        ArrayList<Ferramenta> ferramentasRetiradas = retirarFerramentas();
+        ordemServicoController.registrarFerramentasUtilizadas(codigo, tecnico, ferramentasRetiradas);
+    }
+
+    // ---------- Ferramentas (retirada) ----------
+
+    public static ArrayList<Ferramenta> retirarFerramentas() {
+        ArrayList<Ferramenta> ferramentasRetiradas = new ArrayList<Ferramenta>();
+
+        boolean retirandoFerramentas = true;
+        while (retirandoFerramentas) {
+            System.out.println("--- Ferramentas Disponiveis ---");
+            ArrayList<Ferramenta> ferramentas = ferramentaController.listarFerramentas();
+            boolean existeDisponivel = false;
+            for (int i = 0; i < ferramentas.size(); i++) {
+                if (ferramentas.get(i).isStatus()) {
+                    System.out.println(ferramentas.get(i).toString());
+                    existeDisponivel = true;
+                }
+            }
+            if (!existeDisponivel) {
+                System.out.println("Nenhuma ferramenta disponivel no momento.");
+                retirandoFerramentas = false;
+                continue;
+            }
+
+            System.out.print("Digite o codigo da ferramenta para levar (0 para parar de levar ferramentas): ");
+            int codigoFerramenta = scn.nextInt();
+
+            if (codigoFerramenta == 0) {
+                retirandoFerramentas = false;
+            } else {
+                Ferramenta f = ferramentaController.buscarFerramentaPorCodigo(codigoFerramenta);
+                if (f == null || !f.isStatus()) {
+                    System.out.println("Ferramenta invalida ou indisponivel.");
+                } else {
+                    ferramentaController.alterarStatus(codigoFerramenta, false);
+                    ferramentasRetiradas.add(f);
+                    System.out.println("Ferramenta '" + f.getNome() + "' levada.");
+                }
+            }
+        }
+
+        return ferramentasRetiradas;
     }
 
     public static void listarOrdensDoTecnico(Usuario tecnico) {
@@ -329,49 +275,16 @@ public class Main {
             return;
         }
 
-        ArrayList<Ferramenta> ferramentasRetiradas = new ArrayList<Ferramenta>();
-
-        boolean retirandoFerramentas = true;
-        while (retirandoFerramentas) {
-            System.out.println("--- Ferramentas Disponiveis ---");
-            ArrayList<Ferramenta> ferramentas = ferramentaController.listarFerramentas();
-            boolean existeDisponivel = false;
-            for (int i = 0; i < ferramentas.size(); i++) {
-                if (ferramentas.get(i).isStatus()) {
-                    System.out.println(ferramentas.get(i).toString());
-                    existeDisponivel = true;
-                }
-            }
-            if (!existeDisponivel) {
-                System.out.println("Nenhuma ferramenta disponivel no momento.");
-            }
-
-            System.out.print("Digite o codigo da ferramenta para pegar (0 para parar de pegar ferramentas): ");
-            int codigoFerramenta = scn.nextInt();
-
-            if (codigoFerramenta == 0) {
-                retirandoFerramentas = false;
-            } else {
-                Ferramenta f = ferramentaController.buscarFerramentaPorCodigo(codigoFerramenta);
-                if (f == null || !f.isStatus()) {
-                    System.out.println("Ferramenta invalida ou indisponivel.");
-                } else {
-                    ferramentaController.alterarStatus(codigoFerramenta, false);
-                    ferramentasRetiradas.add(f);
-                    System.out.println("Ferramenta '" + f.getNome() + "' retirada.");
-                }
-            }
-        }
-
         System.out.println("Executando o servico...");
 
-        for (int i = 0; i < ferramentasRetiradas.size(); i++) {
-            Ferramenta f = ferramentasRetiradas.get(i);
+        ArrayList<Ferramenta> ferramentasUtilizadas = ordem.getFerramentasUtilizadas();
+        for (int i = 0; i < ferramentasUtilizadas.size(); i++) {
+            Ferramenta f = ferramentasUtilizadas.get(i);
             ferramentaController.alterarStatus(f.getCodigo(), true);
             System.out.println("Ferramenta '" + f.getNome() + "' devolvida.");
         }
 
-        boolean ok = ordemServicoController.concluirOrdem(codigoOrdem, tecnico, ferramentasRetiradas);
+        boolean ok = ordemServicoController.concluirOrdem(codigoOrdem, tecnico);
         if (ok) {
             System.out.println("Ordem de servico concluida com sucesso!");
         } else {
