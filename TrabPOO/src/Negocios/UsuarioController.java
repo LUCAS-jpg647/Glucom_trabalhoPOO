@@ -26,6 +26,9 @@ public class UsuarioController {
         if (tipo == null) {
             return null;
         }
+        if (this.repository.buscarPorNomeUsuario(nomeUsuario) != null) {
+            return null;
+        }
         return this.repository.salvar(nome, nomeUsuario, senha, tipo);
     }
 

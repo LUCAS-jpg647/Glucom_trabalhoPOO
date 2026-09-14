@@ -43,6 +43,16 @@ public class UsuarioRepository {
         return false;
     }
 
+    public Usuario buscarPorNomeUsuario(String nomeUsuario) {
+        for (int i = 0; i < this.usuarios.size(); i++) {
+            Usuario u = this.usuarios.get(i);
+            if (u.getNomeUsuario().equals(nomeUsuario)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
     public Usuario buscarPorLoginSenha(String nomeUsuario, String senha) {
         for (int i = 0; i < this.usuarios.size(); i++) {
             Usuario u = this.usuarios.get(i);

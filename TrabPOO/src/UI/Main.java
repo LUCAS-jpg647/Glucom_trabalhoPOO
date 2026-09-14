@@ -22,6 +22,7 @@ public class Main {
 
     public static void main(String[] args) {
         inicializarUsuarios();
+        inicializarFerramentas();
 
         boolean continuarSistema = true;
         while (continuarSistema) {
@@ -42,16 +43,41 @@ public class Main {
         usuarioController.cadastrarUsuario("Maria", "Maria", "123", TipoUsuario.CLIENTE);
     }
 
+    public static void inicializarFerramentas() {
+        ferramentaController.cadastrarFerramenta("Bosch", "FuradeiraEletrica", "Furadeira de impacto 650W");
+        ferramentaController.cadastrarFerramenta("Makita", "ParafusadeiraEletrica", "Parafusadeira sem fio 12V");
+        ferramentaController.cadastrarFerramenta("Tramontina", "AlicateUniversal", "Alicate isolado 1000V");
+        ferramentaController.cadastrarFerramenta("Vonder", "MarteloUnha", "Martelo unha 27mm cabo fibra");
+        ferramentaController.cadastrarFerramenta("Stanley", "TrenaMetalica", "Trena 5 metros com trava");
+    }
+
+    // ==================== LOGIN / CRIACAO DE CONTA ====================
+
     public static Usuario telaLogin() {
         System.out.println();
         System.out.println("=== Tela de Login ===");
-        System.out.print("Login (0 para sair): ");
-        String login = scn.next();
+        System.out.println("1 - Entrar");
+        System.out.println("2 - Criar Conta");
+        System.out.println("0 - Sair");
+        System.out.print("Escolha uma opcao: ");
+        int opcao = scn.nextInt();
 
-        if (login.equals("0")) {
+        if (opcao == 0) {
             return null;
+        } else if (opcao == 1) {
+            return fazerLogin();
+        } else if (opcao == 2) {
+            criarConta();
+            return telaLogin();
+        } else {
+            System.out.println("Opcao invalida!");
+            return telaLogin();
         }
+    }
 
+    public static Usuario fazerLogin() {
+        System.out.print("Login: ");
+        String login = scn.next();
         System.out.print("Senha: ");
         String senha = scn.next();
 
@@ -63,6 +89,42 @@ public class Main {
 
         System.out.println("Login realizado com sucesso! Bem-vindo, " + usuario.getNome() + ".");
         return usuario;
+    }
+
+    public static void criarConta() {
+        System.out.println();
+        System.out.println("=== Criar Nova Conta ===");
+        System.out.print("Nome completo (sem espaco): ");
+        String nome = scn.next();
+        System.out.print("Nome de usuario (sem espaco): ");
+        String nomeUsuario = scn.next();
+        System.out.print("Senha (sem espaco): ");
+        String senha = scn.next();
+
+        System.out.println("Tipo de usuario:");
+        System.out.println("1 - Tecnico");
+        System.out.println("2 - Cliente");
+        System.out.print("Escolha: ");
+        int opcaoTipo = scn.nextInt();
+
+        TipoUsuario tipo;
+        switch (opcaoTipo) {
+            case 1 -> tipo = TipoUsuario.TECNICO;
+            case 2 -> tipo = TipoUsuario.CLIENTE;
+            default -> tipo = null;
+        }
+
+        if (tipo == null) {
+            System.out.println("Opcao de tipo invalida!");
+            return;
+        }
+
+        Usuario u = usuarioController.cadastrarUsuario(nome, nomeUsuario, senha, tipo);
+        if (u != null) {
+            System.out.println("Conta criada com sucesso! Voce ja pode fazer login.");
+        } else {
+            System.out.println("Erro ao criar conta. Verifique os dados ou se o nome de usuario ja esta em uso.");
+        }
     }
 
     // ==================== MENU TECNICO ====================
